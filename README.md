@@ -56,10 +56,6 @@ After adding accounts select command "Login using stored accounts" where dialog 
 
 After selecting account hit enter. Username and password will be populated on opened emulator/ Device
 
-Demo Video 
-==========
- ![Logo](website/easy-login-demo.gif)
-
 License
 =======
 
