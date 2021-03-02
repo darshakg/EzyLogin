@@ -50,7 +50,7 @@ Alternatively, you can [download the plugin](http://plugins.jetbrains.com/plugin
 License
 =======
 
-    Copyright 2017 Philippe Breault
+    Copyright 2021 Darshan KG 
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -63,3 +63,8 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+    
+Powered By
+ =======
+
+     Darshan KG, AMLAN and BISHWAJITH
