@@ -58,7 +58,7 @@ After selecting account hit enter. Username and password will be populated on op
 
 Demo Video 
 ==========
- ![Logo](website/ezylogin.gif)
+ ![Logo](website/easy-login-demo.gif)
 
 License
 =======
