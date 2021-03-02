@@ -34,4 +34,3 @@ Create new menu item
 ```kotlin
         addAction("com.darshan.ezylogin.action.NewAction", group)
 ```
-* Powered By DARSHAN, AMLAN and BISHWAJITH 

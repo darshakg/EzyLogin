@@ -47,6 +47,19 @@ Download and install *Ezy Login* directly from Intellij / Android Studio:
 Alternatively, you can [download the plugin](http://plugins.jetbrains.com/plugin/7380?pr=idea) from the jetbrains plugin site and install it manually in:
 `Preferences/Settings->Plugins->Install plugin from disk`
 
+Adding Accounts to Ezy Login 
+========
+
+Goto preference -> otherSettings -> EzyLogin -> Enter Accounts.
+
+After adding accounts select command "Login using stored accounts" where dialog will be shown to select accounts.
+
+After selecting account hit enter. Username and password will be populated on opened emulator/ Device
+
+Demo Video 
+==========
+ ![Logo](website/ezylogin.gif)
+
 License
 =======
 
@@ -63,8 +76,3 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-    
-Powered By
- =======
-
-     Darshan KG, AMLAN and BISHWAJITH
