@@ -18,14 +18,17 @@ class EzyLoginCommand : Command {
     override fun run(project: Project, device: IDevice, facet: AndroidFacet, packageName: String): Boolean {
         try {
             if (AdbUtil.isAppInstalled(device, packageName)) {
-                val credentialList = LoginComponent.getInstance(project).state?.credentialsList.orEmpty()
-                AccountChooseDialog(credentialList,object  : ListSelectionListener{
-                    override fun onItemSelected(credentials: Credentials) {
-                        device.executeShellCommand("input text ${credentials.userName} && input keyevent 61 && input text ${credentials.password} && input keyevent 66", GenericReceiver(), 15L, TimeUnit.SECONDS)
-                        NotificationHelper.info(String.format("<b>%s</b> forced-stop on %s", packageName, device.name))
-                    }
-                }).isVisible = true
-
+                val credentialList = LoginComponent.getInstance().state?.credentialsList.orEmpty()
+                if(credentialList.isEmpty()){
+                    NotificationHelper.error("No Accounts to login please configure and add accounts in plugin settings.")
+                }else{
+                    AccountChooseDialog(credentialList,object  : ListSelectionListener{
+                        override fun onItemSelected(credentials: Credentials) {
+                            device.executeShellCommand("input text ${credentials.userName} && input keyevent 61 && input text ${credentials.password} && input keyevent 66", GenericReceiver(), 15L, TimeUnit.SECONDS)
+                            NotificationHelper.info(String.format("<b>%s</b> forced-stop on %s", packageName, device.name))
+                        }
+                    }).isVisible = true
+                }
                 return true
             } else {
                 NotificationHelper.error(String.format("<b>%s</b> is not installed on %s", packageName, device.name))

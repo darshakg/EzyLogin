@@ -19,6 +19,7 @@
             <li>ADB Enable/Disable Wi-Fi</li>
             <li>ADB Enable/Disable Mobile Data</li>
             <li>Ezy Login/li>
+            <li>Ezy Login to previously logged used account/li>
         </ul>
         <br />
         There are two basic ways to invoke a command:
@@ -153,6 +154,12 @@
                     class="com.darshan.ezylogin.action.EzyLoginAction"
                     text="Login Using Stored Accounts"
                     description="Login">
+            </action>
+
+            <action id="com.darshan.ezylogin.action.EzyLoginToPreviouslyLoggedInAccountAction"
+                    class="com.darshan.ezylogin.action.EzyLoginToPreviouslyLoggedInAccountAction"
+                    text="Login To Previously Used Account"
+                    description="Login to previously used account">
             </action>
         </group>
     </actions>

@@ -10,7 +10,6 @@ class UseSameDevicesHelper constructor(private val projectPreferences: ProjectPr
 
     fun getRememberedDevices(): List<IDevice> {
         val selectedDeviceSerials = projectPreferences.getSelectedDeviceSerials()
-        NotificationHelper.error(selectedDeviceSerials.toString())
         val currentlyConnectedDevices = bridge.connectedDevices()
 
         if (currentlyConnectedDevices == previouslyConnectedDevices) {

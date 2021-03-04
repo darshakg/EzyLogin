@@ -28,12 +28,13 @@ class LoginComponent(project: Project? = null) : ApplicationComponent,
             XmlSerializerUtil.copyBean(state, this.states)
 
     companion object {
-        fun getInstance(project: Project): LoginComponent =
+        fun getInstance(): LoginComponent =
                 ApplicationManager.getApplication().getComponent(LoginComponent::class.java);
     }
 
     class State{
         var credentialsList: MutableList<Credentials>  = mutableListOf()
+        var previouslyLoggedInIndex = -1
         var username: String = ""
     }
 }

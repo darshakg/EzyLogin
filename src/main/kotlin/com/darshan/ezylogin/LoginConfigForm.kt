@@ -10,9 +10,7 @@ class LoginConfigForm(private val project: Project): Configurable, DocumentListe
     private val txtPassword: JTextField = JTextField()
     private val txtUsername: JTextField = JTextField()
     private val addAnotherButton : JButton = JButton()
-
-
-    private var credentialsList  : MutableList<Credentials> = mutableListOf()
+    private val clearStoredAccounts : JButton = JButton()
 
     private var modified = false
 
@@ -61,11 +59,19 @@ class LoginConfigForm(private val project: Project): Configurable, DocumentListe
         addAnotherButton.setBounds(125, 100, 291, 26)
         mainPanel.add(addAnotherButton)
 
+        clearStoredAccounts.text = "Clear Stored Accounts"
+        clearStoredAccounts.setBounds(125, 125, 291, 26)
+        mainPanel.add(clearStoredAccounts)
+
 
         addAnotherButton.addActionListener {
             addCredentialsToList()
             txtPassword.text = ""
             txtUsername.text = ""
+        }
+
+        clearStoredAccounts.addActionListener {
+            clearStoredCredentials()
         }
 
         txtPassword.document?.addDocumentListener(this)
@@ -78,9 +84,16 @@ class LoginConfigForm(private val project: Project): Configurable, DocumentListe
         val userName  = txtUsername.text
         val password = txtPassword.text
         if(userName.isNotEmpty() && password.isNotEmpty()){
-            LoginComponent.getInstance(project).state?.credentialsList?.add(Credentials(txtUsername.text,
+            LoginComponent.getInstance().state?.credentialsList?.add(Credentials(txtUsername.text,
                     txtPassword.text.toString()))
-            LoginComponent.getInstance(project).state?.username = txtUsername.text
+            LoginComponent.getInstance().state?.username = txtUsername.text
+        }
+    }
+
+    private fun clearStoredCredentials() {
+        LoginComponent.getInstance().state?.apply {
+            credentialsList.clear()
+            previouslyLoggedInIndex = -1
         }
     }
 }

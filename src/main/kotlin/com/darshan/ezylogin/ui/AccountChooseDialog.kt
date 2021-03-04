@@ -1,6 +1,7 @@
 package com.darshan.ezylogin.ui
 
 import com.darshan.ezylogin.Credentials
+import com.darshan.ezylogin.LoginComponent
 import com.intellij.openapi.ui.ComboBox
 import java.awt.FlowLayout
 import javax.swing.JButton
@@ -24,7 +25,8 @@ class AccountChooseDialog(private val credentialsList: List<Credentials>,
         }
         button.addActionListener {
             val index = comboBoxUI.selectedIndex
-            listener.onItemSelected(credentialsList[index])
+            LoginComponent.getInstance().state?.previouslyLoggedInIndex = index
+                    listener.onItemSelected(credentialsList[index])
             isVisible = false
             dispose()
         }

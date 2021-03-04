@@ -1,5 +1,6 @@
 package com.darshan.ezylogin.action
 
+import com.darshan.ezylogin.LoginComponent
 import com.darshan.ezylogin.adb.AdbUtil
 import com.intellij.ide.actions.QuickSwitchSchemeAction
 import com.intellij.openapi.actionSystem.ActionManager
@@ -28,6 +29,9 @@ class QuickListAction : QuickSwitchSchemeAction(), DumbAware {
             addAction("com.darshan.ezylogin.action.RestartWithDebuggerAction", group)
         }
         addAction("com.darshan.ezylogin.action.EzyLoginAction", group)
+        if (LoginComponent.getInstance().state?.previouslyLoggedInIndex != -1) {
+            addAction("com.darshan.ezylogin.action.EzyLoginToPreviouslyLoggedInAccountAction", group)
+        }
     }
 
 

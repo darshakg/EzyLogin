@@ -30,6 +30,7 @@ object AdbFacade {
     fun enableMobile(project: Project) = executeOnDevice(project, ToggleSvcCommand(MOBILE, true))
     fun disableMobile(project: Project) = executeOnDevice(project, ToggleSvcCommand(MOBILE, false))
     fun EzyLogin(project: Project) = executeOnDevice(project, EzyLoginCommand())
+    fun EzyLoginToPreviousAccount(project: Project) = executeOnDevice(project, EzyLoginToPreviousAccountCommand())
 
     private fun executeOnDevice(project: Project, runnable: Command) {
         if (AdbUtil.isGradleSyncInProgress(project)) {
@@ -40,13 +41,6 @@ object AdbFacade {
         val result = project.getComponent(ObjectGraph::class.java)
                 .deviceResultFetcher
                 .fetch()
-
-        val accounts  = LoginComponent.getInstance(project)
-        if(accounts.state?.username?.isNotEmpty() == true){
-            NotificationHelper.error(accounts.state?.username.toString())
-        }else{
-            NotificationHelper.error("No Accounts to login please configure and add accounts in plugin settings.")
-        }
         if (result != null) {
             for (device in result.devices) {
                 EXECUTOR.submit { runnable.run(project, device, result.facet, result.packageName) }
