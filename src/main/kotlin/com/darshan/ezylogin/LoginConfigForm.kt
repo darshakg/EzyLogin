@@ -56,11 +56,11 @@ class LoginConfigForm(private val project: Project): Configurable, DocumentListe
         mainPanel.add(txtPassword)
 
         addAnotherButton.text = "Add Account Credentials"
-        addAnotherButton.setBounds(125, 100, 291, 26)
+        addAnotherButton.setBounds(125, 110, 291, 30)
         mainPanel.add(addAnotherButton)
 
         clearStoredAccounts.text = "Clear Stored Accounts"
-        clearStoredAccounts.setBounds(125, 125, 291, 26)
+        clearStoredAccounts.setBounds(125, 150, 291, 30)
         mainPanel.add(clearStoredAccounts)
 
 
@@ -84,8 +84,8 @@ class LoginConfigForm(private val project: Project): Configurable, DocumentListe
         val userName  = txtUsername.text
         val password = txtPassword.text
         if(userName.isNotEmpty() && password.isNotEmpty()){
-            LoginComponent.getInstance().state?.credentialsList?.add(Credentials(txtUsername.text,
-                    txtPassword.text.toString()))
+            LoginComponent.getInstance().state?.credentialsList?.add(Credentials(txtUsername.text.trim(),
+                    txtPassword.text.trim()))
             LoginComponent.getInstance().state?.username = txtUsername.text
         }
     }

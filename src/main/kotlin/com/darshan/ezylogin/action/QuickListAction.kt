@@ -1,12 +1,8 @@
 package com.darshan.ezylogin.action
 
 import com.darshan.ezylogin.LoginComponent
-import com.darshan.ezylogin.adb.AdbUtil
 import com.intellij.ide.actions.QuickSwitchSchemeAction
-import com.intellij.openapi.actionSystem.ActionManager
-import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.DataContext
-import com.intellij.openapi.actionSystem.DefaultActionGroup
+import com.intellij.openapi.actionSystem.*
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
 
@@ -23,23 +19,27 @@ class QuickListAction : QuickSwitchSchemeAction(), DumbAware {
         addAction("com.darshan.ezylogin.action.RestartAction", group)
         addAction("com.darshan.ezylogin.action.ClearDataAction", group)
         addAction("com.darshan.ezylogin.action.ClearDataAndRestartAction", group)
-        if (AdbUtil.isDebuggingAvailable) {
-            group.addSeparator()
-            addAction("com.darshan.ezylogin.action.StartWithDebuggerAction", group)
-            addAction("com.darshan.ezylogin.action.RestartWithDebuggerAction", group)
-        }
         addAction("com.darshan.ezylogin.action.EzyLoginAction", group)
         if (LoginComponent.getInstance().state?.previouslyLoggedInIndex != -1) {
             addAction("com.darshan.ezylogin.action.EzyLoginToPreviouslyLoggedInAccountAction", group)
         }
     }
 
-
     private fun addAction(actionId: String, toGroup: DefaultActionGroup) {
         // add action to group if it is available
         ActionManager.getInstance().getAction(actionId)?.let {
+            if(actionId == "com.darshan.ezylogin.action.EzyLoginToPreviouslyLoggedInAccountAction"){
+                it.templatePresentation.text = getTitleForPreviouslyLoggedInAction()
+            }
             toGroup.add(it)
         }
+    }
+
+    private fun getTitleForPreviouslyLoggedInAction() : String{
+        LoginComponent.getInstance().state?.let {
+            return "Login to ${it.credentialsList[it.previouslyLoggedInIndex].userName}"
+        }
+        return "Login To Previously Logged In Account"
     }
 
     override fun isEnabled() = true

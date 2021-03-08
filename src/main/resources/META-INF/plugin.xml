@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/pbreault/adb-idea">
     <id>com.darshan.ezylogin</id>
     <name>Ezy Login</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <vendor url="https://www.facebook.com/darshan.kadur">DARSHAN KG</vendor>
 
     <description><![CDATA[
@@ -13,11 +13,6 @@
             <li>ADB Restart App</li>
             <li>ADB Clear App Data</li>
             <li>ADB Clear App Data and Restart</li>
-            <li>ADB Start App With Debugger</li>
-            <li>ADB Restart App With Debugger</li>
-            <li>ADB Grant/Revoke Permissions</li>
-            <li>ADB Enable/Disable Wi-Fi</li>
-            <li>ADB Enable/Disable Mobile Data</li>
             <li>Ezy Login/li>
             <li>Ezy Login to previously logged used account/li>
         </ul>
@@ -31,11 +26,16 @@
 
 
     <change-notes><![CDATA[
-        <b>1.6.2</b>
+        <b>1.0.0</b>
         <ul>
             <li> Ezy login plugin to login to accounts easily while developing </li>
         </ul>
-        <b>1.0.0</b>
+        <b>1.0.1</b>
+                <b>1.0.0</b>
+        <ul>
+            <li> Deprecated ADBUtil logic removed and clearing stored accounts logic added </li>
+        </ul>
+        <b>1.0.1</b>
         ]]>
     </change-notes>
 
@@ -106,18 +106,6 @@
                     text="ADB Clear App Data and Restart"
                     description="Clears the private storage of the app and restarts it">
             </action>
-            <action id="com.darshan.ezylogin.action.StartWithDebuggerAction"
-                    class="com.darshan.ezylogin.action.StartWithDebuggerAction"
-                    text="ADB Start App With Debugger"
-                    description="Starts the current application and attach the debugger">
-            </action>
-
-            <action id="com.darshan.ezylogin.action.RestartWithDebuggerAction"
-                    class="com.darshan.ezylogin.action.RestartWithDebuggerAction"
-                    text="ADB Restart App With Debugger"
-                    description="Restarts the current application and attach the debugger">
-            </action>
-
             <action id="com.darshan.ezylogin.action.ClearDataAndRestartWithDebuggerAction"
                     class="com.darshan.ezylogin.action.ClearDataAndRestartWithDebuggerAction"
                     text="ADB Clear App Data and Restart App With Debugger"
