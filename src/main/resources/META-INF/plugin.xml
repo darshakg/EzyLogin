@@ -1,7 +1,7 @@
 <idea-plugin url="https://github.com/pbreault/adb-idea">
     <id>com.darshan.ezylogin</id>
     <name>Ezy Login</name>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <vendor url="https://www.facebook.com/darshan.kadur">DARSHAN KG</vendor>
 
     <description><![CDATA[
@@ -9,12 +9,8 @@
         <ul>
             <li>ADB Uninstall App</li>
             <li>ADB Kill App</li>
-            <li>ADB Start App</li>
-            <li>ADB Restart App</li>
-            <li>ADB Clear App Data</li>
-            <li>ADB Clear App Data and Restart</li>
-            <li>Ezy Login/li>
-            <li>Ezy Login to previously logged used account/li>
+            <li>Ezy Login</li>
+            <li>Ezy Login to previously logged in account</li>
         </ul>
         <br />
         There are two basic ways to invoke a command:
@@ -30,12 +26,17 @@
         <ul>
             <li> Ezy login plugin to login to accounts easily while developing </li>
         </ul>
+        <b>1.0.0</b>
         <b>1.0.1</b>
-                <b>1.0.0</b>
         <ul>
             <li> Deprecated ADBUtil logic removed and clearing stored accounts logic added </li>
         </ul>
         <b>1.0.1</b>
+        <b>1.0.2</b>
+         <ul>
+            <li> Deprecated ADB logic removed</li>
+        </ul>
+        <b>1.0.2</b>
         ]]>
     </change-notes>
 
@@ -56,25 +57,6 @@
                 <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt A"/>
             </action>
             <separator/>
-
-            <action id="com.darshan.ezylogin.action.RevokePermissionsAction"
-                    class="com.darshan.ezylogin.action.RevokePermissionsAction"
-                    text="ADB Revoke Permissions"
-                    description="Revoking the runtime permissions of the current application">
-            </action>
-
-            <action id="com.darshan.ezylogin.action.RevokePermissionsAndRestartAction"
-                    class="com.darshan.ezylogin.action.RevokePermissionsAndRestartAction"
-                    text="ADB Revoke Permissions and Restart"
-                    description="Revoking the runtime permissions of the current application and restarts it">
-            </action>
-
-            <action id="com.darshan.ezylogin.action.GrantPermissionsAction"
-                    class="com.darshan.ezylogin.action.GrantPermissionsAction"
-                    text="ADB Grant Permissions"
-                    description="Granting the runtime permissions of the current application">
-            </action>
-
             <action id="com.darshan.ezylogin.action.UninstallAction"
                     class="com.darshan.ezylogin.action.UninstallAction"
                     text="ADB Uninstall App"
@@ -85,31 +67,6 @@
                     class="com.darshan.ezylogin.action.KillAction"
                     text="ADB Kill App"
                     description="Kills the current application">
-            </action>
-            <action id="com.darshan.ezylogin.action.StartAction"
-                    class="com.darshan.ezylogin.action.StartAction"
-                    text="ADB Start App"
-                    description="Starts the current application">
-            </action>
-            <action id="com.darshan.ezylogin.action.RestartAction"
-                    class="com.darshan.ezylogin.action.RestartAction"
-                    text="ADB Restart App"
-                    description="Restarts the current application">
-            </action>
-            <action id="com.darshan.ezylogin.action.ClearDataAction"
-                    class="com.darshan.ezylogin.action.ClearDataAction"
-                    text="ADB Clear App Data"
-                    description="Clears the private storage of the app">
-            </action>
-            <action id="com.darshan.ezylogin.action.ClearDataAndRestartAction"
-                    class="com.darshan.ezylogin.action.ClearDataAndRestartAction"
-                    text="ADB Clear App Data and Restart"
-                    description="Clears the private storage of the app and restarts it">
-            </action>
-            <action id="com.darshan.ezylogin.action.ClearDataAndRestartWithDebuggerAction"
-                    class="com.darshan.ezylogin.action.ClearDataAndRestartWithDebuggerAction"
-                    text="ADB Clear App Data and Restart App With Debugger"
-                    description="Clears the private storage of the app and restarts it, and attach the debugger">
             </action>
             <add-to-group group-id="AndroidToolsGroup" anchor="first"/>
             <separator/>
@@ -156,14 +113,9 @@
         <component>
             <implementation-class>com.darshan.ezylogin.ObjectGraph</implementation-class>
         </component>
-
     </project-components>
 
     <application-components>
-        <component>
-            <implementation-class>com.darshan.ezylogin.Application</implementation-class>
-        </component>
-
         <component>
             <implementation-class>com.darshan.ezylogin.LoginComponent</implementation-class>
         </component>

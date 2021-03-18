@@ -8,7 +8,6 @@ import com.android.tools.idea.gradle.project.sync.GradleSyncState
 import com.darshan.ezylogin.adb.command.receiver.GenericReceiver
 import com.darshan.ezylogin.ui.NotificationHelper.info
 import com.intellij.openapi.project.Project
-import org.joor.Reflect
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
@@ -23,17 +22,6 @@ object AdbUtil {
         // e.g. if our app is called com.example but there is another app called com.example.another.app, it will match and return a false positive
         return receiver.adbOutputLines.isNotEmpty()
     }
-
-    // The android debugger class is not available in Intellij 2016.1.
-    // Nobody should use that version but it's still the minimum "supported" version since android studio 2.2
-    // shares the same base version.
-    val isDebuggingAvailable: Boolean
-        get() = try {
-            Reflect.on("com.android.tools.idea.run.editor.AndroidDebugger").get<Any>()
-            true
-        } catch (e: Exception) {
-            false
-        }
 
     fun isGradleSyncInProgress(project: Project): Boolean {
         return try {

@@ -1,5 +1,7 @@
 import com.darshan.ezylogin.Credentials
 import com.darshan.ezylogin.LoginComponent
+import com.darshan.ezylogin.ui.JsonFileUtil
+import com.google.gson.Gson
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.project.Project
 import javax.swing.*
@@ -39,7 +41,6 @@ class LoginConfigForm(private val project: Project): Configurable, DocumentListe
         val mainPanel = JPanel()
         mainPanel.setBounds(0, 0, 452, 254)
         mainPanel.layout = null
-
         val lblUsername = JLabel("UserName")
         lblUsername.setBounds(30, 25, 83, 16)
         mainPanel.add(lblUsername)
@@ -84,8 +85,11 @@ class LoginConfigForm(private val project: Project): Configurable, DocumentListe
         val userName  = txtUsername.text
         val password = txtPassword.text
         if(userName.isNotEmpty() && password.isNotEmpty()){
-            LoginComponent.getInstance().state?.credentialsList?.add(Credentials(txtUsername.text.trim(),
-                    txtPassword.text.trim()))
+            LoginComponent.getInstance().state?.credentialsList?.let {
+                it.add(Credentials(txtUsername.text.trim(),
+                        txtPassword.text.trim()))
+//                JsonFileUtil.insertCredentialListToJsonFile(project,it)
+            }
             LoginComponent.getInstance().state?.username = txtUsername.text
         }
     }
@@ -94,6 +98,7 @@ class LoginConfigForm(private val project: Project): Configurable, DocumentListe
         LoginComponent.getInstance().state?.apply {
             credentialsList.clear()
             previouslyLoggedInIndex = -1
+//            JsonFileUtil.clearCredentialFile(project)
         }
     }
 }

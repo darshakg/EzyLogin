@@ -15,14 +15,6 @@ object AdbFacade {
 
     fun uninstall(project: Project) = executeOnDevice(project, UninstallCommand())
     fun kill(project: Project) = executeOnDevice(project, KillCommand())
-    fun grantPermissions(project: Project) = executeOnDevice(project, GrantPermissionsCommand())
-    fun revokePermissions(project: Project) = executeOnDevice(project, RevokePermissionsCommand())
-    fun revokePermissionsAndRestart(project: Project) = executeOnDevice(project, RevokePermissionsAndRestartCommand())
-    fun startDefaultActivity(project: Project) = executeOnDevice(project, StartDefaultActivityCommand(false))
-    fun restartDefaultActivity(project: Project) = executeOnDevice(project, RestartPackageCommand())
-    fun clearData(project: Project) = executeOnDevice(project, ClearDataCommand())
-    fun clearDataAndRestart(project: Project) = executeOnDevice(project, ClearDataAndRestartCommand())
-    fun clearDataAndRestartWithDebugger(project: Project) = executeOnDevice(project, ClearDataAndRestartWithDebuggerCommand())
     fun enableWifi(project: Project) = executeOnDevice(project, ToggleSvcCommand(WIFI, true))
     fun disableWifi(project: Project) = executeOnDevice(project, ToggleSvcCommand(WIFI, false))
     fun enableMobile(project: Project) = executeOnDevice(project, ToggleSvcCommand(MOBILE, true))
@@ -39,12 +31,18 @@ object AdbFacade {
         val result = project.getComponent(ObjectGraph::class.java)
                 .deviceResultFetcher
                 .fetch()
-        if (result != null) {
-            for (device in result.devices) {
-                EXECUTOR.submit { runnable.run(project, device, result.facet, result.packageName) }
+
+        try{
+            if (result != null) {
+                for (device in result.devices) {
+                    EXECUTOR.submit { runnable.run(project, device, result.facet, result.packageName) }
+                }
+            } else {
+                NotificationHelper.error("No Device found")
             }
-        } else {
-            NotificationHelper.error("No Device found")
+        }catch (e : Exception){
+            NotificationHelper.error("ADB not found. Please Setup ADB")
         }
+
     }
 }

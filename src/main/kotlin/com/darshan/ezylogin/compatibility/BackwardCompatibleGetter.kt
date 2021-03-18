@@ -1,6 +1,5 @@
 package com.darshan.ezylogin.compatibility
 
-import org.joor.ReflectException
 
 /**
  * Abstracts the logic to call the current implementation and fall back on reflection for previous versions
@@ -24,8 +23,7 @@ abstract class BackwardCompatibleGetter<T> {
         return t is ClassNotFoundException ||
                 t is NoSuchFieldException ||
                 t is LinkageError ||
-                t is NoSuchMethodException ||
-                t is ReflectException
+                t is NoSuchMethodException
     }
 
     abstract fun getCurrentImplementation() : T

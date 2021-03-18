@@ -8,7 +8,6 @@ import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.util.Disposer
 import org.jetbrains.android.facet.AndroidFacet
 import org.jetbrains.android.util.AndroidBundle
-import org.joor.Reflect
 import javax.swing.JCheckBox
 import javax.swing.JComponent
 import javax.swing.JPanel
@@ -59,7 +58,7 @@ class DeviceChooserDialog(facet: AndroidFacet) : DialogWrapper(facet.module.proj
         return try {
             myDeviceChooser.preferredFocusComponent
         } catch (e: NoSuchMethodError) { // that means that we are probably on a preview version of android studio or in intellij 13
-            Reflect.on(myDeviceChooser).call("getDeviceTable").get<JComponent>()
+            null
         }
     }
 

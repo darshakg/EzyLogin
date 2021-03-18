@@ -13,7 +13,7 @@ object NotificationHelper {
     fun error(message: String) = sendNotification(message, NotificationType.ERROR, ERRORS)
 
     private fun sendNotification(message: String, notificationType: NotificationType, notificationGroup: NotificationGroup) {
-        notificationGroup.createNotification("ADB IDEA", escapeString(message), notificationType, null).notify(null)
+        notificationGroup.createNotification("Ezy Login", escapeString(message), notificationType, null).notify(null)
     }
 
     private fun escapeString(string: String) = string.replace("\n".toRegex(), "\n<br />")

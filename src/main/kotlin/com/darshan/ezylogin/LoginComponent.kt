@@ -8,8 +8,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 
 @State(name = "LoginComponent",
         storages = [Storage(value = "loginConfiguration.xml")])
-class LoginComponent(project: Project? = null) : ApplicationComponent,
-        PersistentStateComponent<LoginComponent.State> {
+class LoginComponent(project: Project? = null) : PersistentStateComponent<LoginComponent.State> {
 
     private var credentials = Credentials("","")
 
