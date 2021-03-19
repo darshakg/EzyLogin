@@ -20,6 +20,8 @@ class QuickListAction : QuickSwitchSchemeAction(), DumbAware {
         addAction("com.darshan.ezylogin.action.ClearDataAction", group)
         addAction("com.darshan.ezylogin.action.ClearDataAndRestartAction", group)
         addAction("com.darshan.ezylogin.action.EzyLoginAction", group)
+        addAction("com.darshan.ezylogin.action.EnableLayoutBoundsAction", group)
+        addAction("com.darshan.ezylogin.action.DisableLayoutBoundsAction", group)
         if (LoginComponent.getInstance().state?.previouslyLoggedInIndex != -1) {
             addAction("com.darshan.ezylogin.action.EzyLoginToPreviouslyLoggedInAccountAction", group)
         }
