@@ -106,6 +106,16 @@
                     text="Login To Previously Used Account"
                     description="Login to previously used account">
             </action>
+
+            <action id="com.darshan.ezylogin.action.EnableLayoutBoundsAction"
+                    class="com.darshan.ezylogin.action.EnableLayoutBoundsAction"
+                    text="Enable Layout Bounds"
+                    description="Enable layout bounds"/>
+
+            <action id="com.darshan.ezylogin.action.DisableLayoutBoundsAction"
+                    class="com.darshan.ezylogin.action.DisableLayoutBoundsAction"
+                    text="Disable Layout Bounds"
+                    description="Disable layout bounds"/>
         </group>
     </actions>
 

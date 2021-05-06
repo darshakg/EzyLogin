@@ -21,6 +21,8 @@ object AdbFacade {
     fun disableMobile(project: Project) = executeOnDevice(project, ToggleSvcCommand(MOBILE, false))
     fun EzyLogin(project: Project) = executeOnDevice(project, EzyLoginCommand())
     fun EzyLoginToPreviousAccount(project: Project) = executeOnDevice(project, EzyLoginToPreviousAccountCommand())
+    fun EnableLayoutBoundsAction(project: Project) = executeOnDevice(project, EnableLayoutBoundsActionCommand())
+    fun DisableLayoutBoundsAction(project: Project) = executeOnDevice(project, DisableLayoutBoundsActionCommand())
 
     private fun executeOnDevice(project: Project, runnable: Command) {
         if (AdbUtil.isGradleSyncInProgress(project)) {
