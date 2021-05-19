@@ -134,7 +134,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <defaultProjectTypeProvider type="Android"/>
         <projectConfigurable
-                instance="LoginConfigForm">
+                instance="com.darshan.ezylogin.LoginConfigForm">
         </projectConfigurable>
     </extensions>
 </idea-plugin>

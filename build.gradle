@@ -66,6 +66,7 @@ group 'com.darshan.ezylogin'
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
+    implementation "org.apache.commons:commons-csv:1.5"
 //    compile "org.jooq:joor-java-8:0.9.13"
     compileOnly fileTree(dir: "$StudioCompilePath/plugins/android/lib", include: ['*.jar'])
     compileOnly fileTree(dir: "$StudioCompilePath/lib", include: ['*.jar'])
